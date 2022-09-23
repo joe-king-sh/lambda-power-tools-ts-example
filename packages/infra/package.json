@@ -1,0 +1,19 @@
+{
+  "name": "infra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joe-king-sh/lambda-power-tools-ts-example.git"
+  },
+  "author": "joe-king-sh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joe-king-sh/lambda-power-tools-ts-example/issues"
+  },
+  "homepage": "https://github.com/joe-king-sh/lambda-power-tools-ts-example#readme"
+}
