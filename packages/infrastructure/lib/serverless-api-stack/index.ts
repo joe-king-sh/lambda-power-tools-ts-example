@@ -1,11 +1,16 @@
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cdk from "aws-cdk-lib";
+import { Construct } from "constructs";
+import { DynamoDB } from "./constructs/dynamodb";
 
-export class CdkStack extends cdk.Stack {
+export class ServerlessApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const ddb = new DynamoDB(this);
+
+    /***
+     * API Gateway
+     */
     // The code that defines your stack goes here
 
     // example resource
