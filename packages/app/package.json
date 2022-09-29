@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/joe-king-sh/lambda-power-tools-ts-example/issues"
   },
-  "homepage": "https://github.com/joe-king-sh/lambda-power-tools-ts-example#readme"
+  "homepage": "https://github.com/joe-king-sh/lambda-power-tools-ts-example#readme",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.106"
+  }
 }
