@@ -4,6 +4,8 @@
   "description": "npm help init",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build --workspaces",
+    "type-check": "npm run type-check --workspaces",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +19,7 @@
   },
   "homepage": "https://github.com/joe-king-sh/lambda-power-tools-ts-example#readme",
   "workspaces": [
-    "packages/infra",
+    "packages/infrastructure",
     "packages/app"
   ],
   "dependencies": {
@@ -26,5 +28,8 @@
   },
   "volta": {
     "node": "18.10.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.10"
   }
 }
