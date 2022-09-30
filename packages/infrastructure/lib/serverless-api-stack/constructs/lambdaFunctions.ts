@@ -9,17 +9,19 @@ const distPath = path.join(__dirname, "../../../../app/dist/handlers");
 type LambdaFunctionsProps = {
   ddbName: string;
 };
+
+export type ILambdaFunctionsByName = { [key in string]: NodejsFunction };
 export class LambdaFunctions {
-  lambdaFunctions: Array<{ [key in string]: NodejsFunction }> = [];
+  lambdaFunctions: ILambdaFunctionsByName = {};
 
   constructor(readonly scope: Construct, readonly props: LambdaFunctionsProps) {
-    const fileNames: string[] = ["postTodo"];
+    const fileNames: string[] = ["postTodo", "getTodo"];
 
     fileNames.forEach((fileName: string) => {
       const nodeJsFunction = new MyNodejsFunction(scope, fileName, {
         handlerFileName: fileName,
       }).nodeJsFunction;
-      this.lambdaFunctions.push({ fileName: nodeJsFunction });
+      this.lambdaFunctions[fileName] = nodeJsFunction;
     });
   }
 }

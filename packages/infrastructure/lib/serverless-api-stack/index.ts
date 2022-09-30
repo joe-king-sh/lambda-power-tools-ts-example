@@ -1,5 +1,6 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
+import { ApiGateway } from "./constructs/apiGateway";
 import { DynamoDB } from "./constructs/dynamodb";
 import { LambdaFunctions } from "./constructs/lambdaFunctions";
 
@@ -9,8 +10,10 @@ export class ServerlessApiStack extends cdk.Stack {
 
     const ddb = new DynamoDB(this);
 
-    new LambdaFunctions(this, {
+    const { lambdaFunctions } = new LambdaFunctions(this, {
       ddbName: ddb.todoTable.tableName,
     });
+
+    new ApiGateway(this, { lambdaFunctions });
   }
 }
