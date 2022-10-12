@@ -15,7 +15,7 @@ export class LambdaFunctions {
   lambdaFunctions: ILambdaFunctionsByName = {};
 
   constructor(readonly scope: Construct, readonly props: LambdaFunctionsProps) {
-    const fileNames: string[] = ["postTodo", "getTodo"];
+    const fileNames: string[] = ["postTodo", "getTodos"];
 
     fileNames.forEach((fileName: string) => {
       const nodeJsFunction = new MyNodejsFunction(scope, fileName, {
