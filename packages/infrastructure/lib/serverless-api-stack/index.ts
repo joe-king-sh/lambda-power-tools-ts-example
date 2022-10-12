@@ -11,7 +11,7 @@ export class ServerlessApiStack extends cdk.Stack {
     const ddb = new DynamoDB(this);
 
     const { lambdaFunctions } = new LambdaFunctions(this, {
-      ddbName: ddb.todoTable.tableName,
+      ddbTable: ddb.todoTable,
     });
 
     new ApiGateway(this, { lambdaFunctions });

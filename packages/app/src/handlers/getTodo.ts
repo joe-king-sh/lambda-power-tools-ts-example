@@ -9,7 +9,7 @@ export async function handler(
   _: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>
 ): Promise<APIGatewayProxyResult> {
   const todoRepository = new TodoRepository();
-  const todos = todoRepository.getTodos();
+  const todos = await todoRepository.getTodos();
 
   return {
     statusCode: 200,
