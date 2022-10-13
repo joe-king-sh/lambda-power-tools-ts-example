@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { aws_lambda_nodejs } from "aws-cdk-lib";
+import { aws_lambda_nodejs, aws_lambda } from "aws-cdk-lib";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
 export interface MyNodejsFunctionProps {
@@ -20,6 +20,7 @@ export class MyNodejsFunction extends Construct {
         bundling: {
           forceDockerBundling: false,
         },
+        tracing: aws_lambda.Tracing.ACTIVE,
       }
     );
   }

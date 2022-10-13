@@ -11,8 +11,22 @@ import {
   ScanCommand,
   ScanCommandInput,
 } from "@aws-sdk/client-dynamodb";
+import { Tracer } from "@aws-lambda-powertools/tracer";
+import { Logger } from "@aws-lambda-powertools/logger";
 
-const client = new DynamoDBClient({ region: "ap-northeast-1" });
+const logger = new Logger({
+  serviceName: "todo-sample-api",
+  logLevel: "debug",
+});
+
+const tracer = new Tracer({
+  serviceName: "todo-sample-api",
+});
+tracer.captureAWSv3Client(new DynamoDBClient({}));
+
+const client = tracer.captureAWSv3Client(
+  new DynamoDBClient({ region: "ap-northeast-1" })
+);
 
 export class TodoRepository implements ITodoRepository {
   save: (options: { todo: Todo }) => Promise<void> = async (options) => {
@@ -22,6 +36,7 @@ export class TodoRepository implements ITodoRepository {
       Item: item,
     };
     const command = new PutItemCommand(input);
+    logger.debug("command", { data: command });
     await client.send(command);
     return;
   };
@@ -33,11 +48,11 @@ export class TodoRepository implements ITodoRepository {
 
     const command = new ScanCommand(input);
     const response = await client.send(command);
-    console.log({ response });
+    logger.debug("response", { data: response });
 
     const todos = response.Items?.map((item) => unmarshall(item)) ?? [];
 
-    console.log({ todos });
+    logger.debug("todos", { data: todos });
 
     return {
       todos: todos as Todo[],
